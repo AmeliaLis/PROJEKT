@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HTTP Response</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style src="styleprojekt.css"></style>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <h1>HTTP Response</h1>
+    <input type="button" value="Make a connection" onclick="connect()">
+    <p id="result"></p>
+    <input type="button" value="Test" onclick="connect()">
+    <script>
+
+        function connect() {
+            var method = 'GET';
+            var URL = 'https://my.api.mockaroo.com/cars.json?key=f34a0680';
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () { display(this); };
+            xhr.open(method, URL);
+            xhr.send();
+        }
+        function display(r) {
+            if (r.readyState == 4 && r.status == 200) {
+                document.getElementById("result").innerHTML = r.responseText;
+            }
+        };
+      
+        var cars = 'https://my.api.mockaroo.com/cars.json?key=f34a0680';
+            cars.getElementById("car_color")
+
+        
+        
+    </script>
+
+</body>
+
+</html>
