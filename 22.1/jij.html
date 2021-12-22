@@ -1,0 +1,106 @@
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+<body>
+
+    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+    <script>
+        let year_array = [];
+
+        async function checkYears() {
+            var apiUrl = "https://my.api.mockaroo.com/cars.json?key=f34a0680";
+            return fetch(apiUrl).then(response => {
+                return response.json();
+            }).then(jsondata => {
+                console.log(jsondata)
+                jsondata.map(item => {
+                    year_array.push(item.car_year)
+                })
+                console.log(year_array, 999)
+
+                let unique_years = []
+                let ye_count = []
+
+                year_array.map(item1 => {
+                    if (!unique_years.includes(item1)) {
+                        unique_years.push(item1)
+
+                        count = 0
+                        year_array.map(item2 => {
+
+                            if (item1 == item2) {
+                                count += 1
+                            }
+                        })
+                        ye_count.push(count)
+                    }
+
+                })
+
+
+                console.log(unique_years, 998)
+                console.log(ye_count, 999)
+
+                var next = true;
+
+                while (next) {
+                    var skip = true;
+                    for (var i = 0; i < ye_count.length; i++) {
+                        if (ye_count[i] < ye_count[i + 1]) {
+                            temp = ye_count[i]
+                            ye_count[i] = ye_count[i + 1]
+                            ye_count[i + 1] = temp
+
+                            temp = unique_years[i]
+                            unique_years[i] = unique_years[i + 1]
+                            unique_years[i + 1] = temp
+                            skip = false;
+                        }
+                    }
+
+                    if (skip) {
+                        next = false;
+                    }
+
+                }
+
+                console.log(ye_count, 998)
+                console.log(unique_years, 998)
+
+                var xValues = unique_years;
+                var yValues = ye_count;
+                var barColors = ["red", "green", "blue", "orange", "brown","red", "green", "blue", "orange", "brown","red", "green", "blue", "orange", "brown","red", "green", "blue", "orange", "brown",];
+
+                new Chart("myChart", {
+                    type: "bar",
+                    data: {
+                        labels: xValues,
+                        datasets: [{
+                            backgroundColor: barColors,
+                            data: yValues
+                        }]
+                    },
+                    options: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: "KUPA"
+                        }
+                    }
+                });
+                const myChart = new Chart(document.getElementById('myChart').getContext('2d'))
+
+        return myChart
+
+            }).catch(err => {
+                // Do something for an error here
+            });
+        }
+        const myChart = checkYears()
+
+    </script>
+
+</body>
+
+</html>
