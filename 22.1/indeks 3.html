@@ -74,7 +74,7 @@
             const data = {
                 labels: labels,
                 datasets: [{
-                    label: 'My First Dataset',
+                    label: "Liczba samochodów wyprodukowanych w danym roku",
                     data: ye_count,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -103,8 +103,36 @@
                 data: data,
                 options: {
                     scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: "Rok",
+                                color: "#b5b4f5",
+                                font: {
+                                    family: "Times",
+                                    size: 30,
+                                    weight: "bold",
+                                    lineHeight: 1.5,
+                                },
+                                padding: {top: 20, left: 0, right: 0, bottom: 0}
+                            }
+                        },
                         y: {
-                            beginAtZero: true
+                            beginAtZero: true,
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Value',
+                                color: '#b5b4f5',
+                                font: {
+                                    family: 'Times',
+                                    size: 30,
+                                    style: 'bold',
+                                    lineHeight: 1.5
+                                },
+                                padding: {top: 20, left: 0, right: 0, bottom: 0}
+                            }
                         }
                     }
                 },
